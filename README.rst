@@ -1,0 +1,1 @@
+Equus – python configuration tool
