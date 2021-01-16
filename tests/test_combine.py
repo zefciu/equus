@@ -1,6 +1,8 @@
 import io
 from os import environ
 
+from nose.tools import assert_equal
+
 from equus.loaders.environ import EnvironInput
 from tests.shared import SubConfig, SampleNestedConfiguration
 
@@ -23,3 +25,5 @@ def test_combine():
         (MAIN_INI, 'app_config'),
         subconfiguration=subconfig,
     )
+    assert_equal(config.required_str_param, 'spam')
+    assert_equal(config.subconfiguration.url, 'http://example.com')

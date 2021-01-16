@@ -59,7 +59,7 @@ class Configuration(metaclass=ConfigurationMeta):
 
 
     @classmethod
-    def load(cls: Type[T], *inputs: list[Any], **data: dict[str, Any]) -> T:
+    def load(cls: Type[T], *inputs: Any, **data: dict[str, Any]) -> T:
         data = deepcopy(data)
         loaders = [
             entry_point.load()
