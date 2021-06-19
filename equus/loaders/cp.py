@@ -1,6 +1,6 @@
 import io
 import typing
-from configparser import ConfigParser
+from configparser import ConfigParser, Error as CPError
 from typing import Any
 
 
@@ -12,7 +12,10 @@ def config_parser_loader(input_: Any) -> typing.Mapping[str, Any]:
             filename, _, section = input_.partition(':')
         else:
             filename = input_
-        parser.read(filename)
+        try:
+            parser.read(filename)
+        except CPError:
+            raise TypeError('File is not configparser')
     elif isinstance(input_, io.IOBase):
         parser.read_file(input_)
     elif isinstance(input_, tuple):
